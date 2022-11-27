@@ -80,7 +80,9 @@ class LinkedList:
 
     def remove(self, key):
         """
-        
+        Removes a node containing the key
+        Removal takes O(1) time but finding the node containing the
+        the key takes O(n) time
         """
         prev_node = None
         current = self.head
@@ -97,16 +99,36 @@ class LinkedList:
         return False
 
     
+    # def removeAt(self, position):
+    #     """
+        
+    #     """
+    #     current_node = self.head
+    #     while position > 0:
+    #         current_node = current_node.next_node
+    #         position -= 1
+        
+    #     self.remove(current_node.data)
+
+
     def removeAt(self, position):
         """
-        
+        Removes a node from an index position
+        Removal takes O(1) time but finding the node at 
+        index position takes O(n) time.
         """
+        prev_node = None
         current_node = self.head
-        while position > 0:
-            current_node = current_node.next_node
-            position -= 1
-        
-        self.remove(current_node.data)
+        if position == 0:
+            self.head = current_node.next_node
+        else:
+            while position > 0:
+                prev_node = current_node
+                current_node = current_node.next_node
+                position -= 1
+            
+            prev_node.next_node = current_node.next_node
+
 
 
     def __repr__(self):
